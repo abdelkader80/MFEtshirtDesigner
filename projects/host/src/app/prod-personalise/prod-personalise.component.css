@@ -1,0 +1,52 @@
+
+.hideOperations {
+    display: true;
+  }
+  
+  .displayOperations {
+    display: block;
+  }
+  
+  .editor-area {
+    float: right;
+  }
+  
+  
+  .canvas-bg-wrapper {
+    position: relative;
+    width: 500px;
+    height: 560px;
+  }
+  
+  .canvas-bg {
+    position: absolute;
+    width: 500px;
+    height: 560px;
+  }
+  
+  .canvas-container {
+    top: 20px;
+    left: 40px;
+  
+    border-width: 19px 22px 22px 19px;
+    -moz-border-image: url(https://drive.google.com/uc?export=view&id=0B3ubyt3iIvkabEZhbkJseW5IZWc) 19 22 21 19 round;
+    -webkit-border-image: url(https://drive.google.com/uc?export=view&id=0B3ubyt3iIvkabEZhbkJseW5IZWc) 19 22 21 19 round;
+    -o-border-image: url(https://drive.google.com/uc?export=view&id=0B3ubyt3iIvkabEZhbkJseW5IZWc) 19 22 21 19 round;
+    border-image: url(https://drive.google.com/uc?export=view&id=0B3ubyt3iIvkabEZhbkJseW5IZWc) 19 22 21 19 round;
+  }
+  
+  
+  
+  .controls button{
+    margin: 6px;
+    padding: 7px 11px;
+  }
+  input[type="file" i] {
+    position: relative;
+    margin: 6px;
+    padding: 3px 11px;
+  }
+  .divpers{
+      background-color: darkkhaki;
+  }
+  

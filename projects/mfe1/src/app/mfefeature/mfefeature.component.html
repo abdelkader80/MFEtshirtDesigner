@@ -1,0 +1,60 @@
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <ul *ngIf="cat" class="list-group">
+                <li [ngClass]="c==currentcat?'active':''" *ngFor="let c of cat._embedded.categories"
+                    class="list-group-item category" (click)="onGetproducts(c)">
+                    {{c.name}}
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-md-8" *ngIf="produits">
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-header">Liste des produits</div>
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col-md-6" *ngFor="let p of produits._embedded.produits">
+
+                        <div class="card-deck">
+
+                            <div class="card text-white bg-info mb-4">
+                                <div class="card-header">{{p.name}}</div>
+                                <div class="card-body">
+                                    <img class="card-img-top" (click)="detailProduit(p)" [src]="getphotonom(p.id)"
+                                        alt="">
+                                </div>
+                                <div>
+                                    <label>
+                                        Prix :{{p.currentprice|number:'0.00'}}
+                                    </label>
+                                </div>
+                                <div>
+                                    <span *ngIf="p.promotion">
+                                        <img src="../../assets/promo.png" class="img-thumbnail img-circle"
+                                            style="height: 40px">
+
+                                    </span>
+                                    <span *ngIf="p.selected">
+                                        <img src="../../assets/images/disponible.png" class="img-thumbnail img-circle"
+                                            style="height: 40px">
+
+                                    </span>
+                                    <span *ngIf="p.disponible">
+                                        <img src="../../assets/images/disponible.png" class="img-thumbnail img-circle"
+                                            style="height: 40px">
+
+                                    </span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

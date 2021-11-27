@@ -1,0 +1,68 @@
+<br>
+<div class="container-fluid divpers">
+    <div class="row">
+      <div class="col col-md-6">
+        <div class="panel panel-info">
+          <div class="panel-heading"><b>Pernalisation</b></div>
+          <div class="panel-body">
+            <div id="canvas-wrapper" class="editor-area" [style.backgroundColor]="bgc">
+              <div class="canvas-bg-wrapper">
+                <img class="canvas-bg" alt="" src='assets/{{selectedValue}}'>
+                <canvas width="400" height="560" id="c"></canvas>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+  
+      </div>
+  
+      <div class="col col-md-6">
+        <div class="panel panel-info">
+          <div class="panel-heading"><b>Paramètres</b></div>
+          <div class="panel-body">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Selectionner votre produit :</label>
+          <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="selectedValue">
+            <option [value]="image" *ngFor="let image of tabimage"> {{image}}</option>
+  
+          </select>
+  
+        </div>
+        <div class="controls">
+          <h3><span class="tim-note">Choisir</span> une image</h3>
+          <input type="file" class="form-control-file border btn" name="file" id="uploadImg" (click)="nouveauprix()">
+  
+  
+          <button class="btn btn-rose" id="btn">Inserer un texte<div class="ripple-container"></div></button>
+  
+          <div id="textMenu" class="hideOperations">
+  
+            Size<br><input type="range" min="5" max="150" value="40" id="size">
+            <input type="range" min="0.1" max="5" value="0.1" id="height" ><br>
+            <span>Text Color</span><input type="color" id="color">
+            <br>
+            <span>BackGround Color</span><input type="color" id="bg-color">
+          </div>
+  
+          <button class="btn btn-rose" id="btnshape">Inserer une forme<div class="ripple-container"></div></button>
+  
+          <button class="btn btn-rose" id="deleteObjects" (click)="diminuerprix()">Supprimer l'objet<div
+              class="ripple-container"></div></button>
+  
+          <h3><span class="tim-note">Choisir</span> un couleur</h3>
+          <input [(ngModel)]="bgc" class="form-control" type="color">
+  
+        </div>
+      </div>
+      <button id="download">Download</button>
+      <!-- <div class="col">
+        <h3><span class="tim-note">Passer</span> votre commande</h3>
+        <h3> le prix du votre produit : </h3>
+        <h1>{{prix}} DT</h1>
+      </div> -->
+    </div>
+  </div>
+  </div>
+  </div>
+  

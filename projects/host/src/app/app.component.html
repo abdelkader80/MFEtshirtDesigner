@@ -1,0 +1,103 @@
+<!-- <h1>Angular MFE Host</h1>
+<a routerLink='/'>Main  </a> <br>
+<a routerLink='/mfe1'>Link to MFE</a> -->
+
+<div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+  <!-- <a class="navbar-brand" routerLink="/mfe2">Navbar</a> -->
+  
+    <a class="navbar-brand" href="#">
+      <img src="../assets/tshirticon.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill"> 
+    </a>
+ 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/mfe1">Nos Produits</a>
+      </li>
+      <li class="nav-item">
+        <a class=" nav-link" routerLink="product">Gestion des Produits</a>
+      </li>
+      <li class="nav-item">
+        <a class=" nav-link" routerLink="prodpers">Personnalisation</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <form class="d-flex">
+    <input class="form-control me-2" type="text"   placeholder="Search" (keyup.enter)="onGetproducts($event)" >
+    
+  </form>
+
+</nav>
+<br>
+<div class="col-md-8" *ngIf="produits mode">
+  <div class="card text-white bg-dark mb-3">
+      <div class="card-header">Liste des produits</div>
+      <div class="card-body">
+          <div class="row">
+          <div class="col-md-6" *ngFor="let p of produits._embedded.produits">
+
+              <div class="card-deck">
+
+                  <div class="card text-white bg-info mb-4">
+                      <div class="card-header">{{p.name}}</div>
+                      <div class="card-body">
+                          <img class="card-img-top" (click)="detailProduit(p)" [src]="getphotonom(p.id)"
+                              alt="">
+                      </div>
+                      <div>
+                          <label>
+                              Prix :{{p.currentprice|number:'0.00'}}
+                          </label>
+                      </div>
+                      <div>
+                          <span *ngIf="p.promotion">
+                              <img src="../assets/promo.png" class="img-thumbnail img-circle"
+                                  style="height: 40px">
+
+                          </span>
+                          <span *ngIf="p.selected">
+                              <img src="../assets/disponible.png" class="img-thumbnail img-circle"
+                                  style="height: 40px">
+
+                          </span>
+                          <span *ngIf="p.disponible">
+                              <img src="../assets/disponible.png" class="img-thumbnail img-circle"
+                                  style="height: 40px">
+
+                          </span>
+
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+</div>
+
+
+
+<router-outlet></router-outlet>
+<br>
+<app-footer></app-footer>
+</div>
+

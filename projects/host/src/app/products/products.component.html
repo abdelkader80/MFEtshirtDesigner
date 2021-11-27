@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h2>Liste des produits</h2></div>
+        <div class="panel-body">
+            <button (click)="getproduct()" class="btn btn-success">Liste des produit</button>
+    <button class="btn btn-success" routerLink="/ajoutproduit">Ajout</button>
+    
+    
+    <table class="table table-stripped" *ngIf="produits">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Taille</th>
+                <th>Couleur</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Promotion</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+    
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let prod of produits">
+                <td>{{prod.name}}</td>
+                <td>{{prod.taille}}</td>
+                <td>{{prod.couleur}}</td>
+                <td>{{prod.description}}</td>
+                <td>{{prod.currentprice}}</td>
+                <td>{{prod.promotionng}}</td>
+                <td><button class="btn btn-success" (click)="modifierproduit(prod.id)">Modifier</button></td>
+                <td><button class="btn btn-danger" (click)="deleteproduit(prod.id)">Supprimer</button></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+        </div>
+    </div>
+    
+    
+
+</div>
