@@ -10,6 +10,7 @@ import { ProdPersonaliseComponent } from './prod-personalise/prod-personalise.co
 import { FormsModule } from '@angular/forms';
 import { ResearchmcComponent } from './researchmc/researchmc.component';
 import { FooterComponent } from './footer/footer.component';
+import { CreateproduitComponent } from './createproduit/createproduit.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FooterComponent } from './footer/footer.component';
     ProductsComponent,
     ProdPersonaliseComponent,
     ResearchmcComponent,
-    FooterComponent
+    FooterComponent,
+    CreateproduitComponent
   ],
   imports: [
     BrowserModule,

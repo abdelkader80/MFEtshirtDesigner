@@ -1,12 +1,11 @@
 <div class="container">
-    <div class="panel panel-primary">
-        <div class="panel-heading"><h2>Liste des produits</h2></div>
-        <div class="panel-body">
-            <button (click)="getproduct()" class="btn btn-success">Liste des produit</button>
+    <button (click)="getproduct()" class="btn btn-success">Liste des produit</button>
     <button class="btn btn-success" routerLink="/ajoutproduit">Ajout</button>
-    
-    
-    <table class="table table-stripped" *ngIf="produits">
+    <br>
+    <div class="panel panel-primary"  *ngIf="produits">
+        <div class="panel-heading"><b>Liste des produits</b> </div>
+        <div class="panel-body">
+    <table class="table table-dark table-striped">
         <thead>
             <tr>
                 <th>Nom</th>

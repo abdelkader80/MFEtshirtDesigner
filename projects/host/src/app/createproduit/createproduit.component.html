@@ -1,0 +1,79 @@
+<div class="container">
+
+    <div class="card text-dark bg-light mb-3">
+        <div class="card-header">Ajouter un nouveau Produit</div>
+        <div class="card-body">
+            <form (ngSubmit)='onSubmit(f)' #f="ngForm">
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nom</label>
+                    <input type="email" class="form-control" [(ngModel)]="nouvprod.name" name="name" id="name">
+                    <div id="textHelp" class="form-text">Le nom du produit</div>
+                  </div>
+                <div class="form-group">
+                    <label for="cat-select">Categorie:</label>
+                    <select name="categorie" [(ngModel)]="nouvprod.categorie">
+                        <option *ngFor="let c of cat" [ngValue]="c">
+                            {{c.name}}
+                        </option>
+                    </select>
+                </div>
+               <!--  <div class="form-group">
+                    <label for="pwd">Taille</label>
+                    <input type="number" class="form-control" [(ngModel)]="nouvprod.taille" name="taille" id="taille">
+                    <label for="points">Taille :</label>
+                    <input type="range"  class="form-control" [(ngModel)]="nouvprod.taille" id="taille" name="taille" min="15" max="45">
+                </div> -->
+                <br>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Selectionner la taille</label>
+                    <select class="form-control" [(ngModel)]="nouvprod.taille" name="taille" id="taille">
+                      <option>29</option>
+                      <option>30</option>
+                      <option>31</option>
+                      <option>32</option>
+                      <option>33</option>
+                    </select>
+                  </div>
+                <div class="form-group">
+                    <label for="exampleColorInput" class="form-label">Couleur</label>
+                    <input type="color" class="form-control form-control-color" [(ngModel)]="nouvprod.couleur"
+                        name="couleur" id="nom" id="exampleColorInput" value="#563d7c">
+                </div>
+                <div class="form-group">
+                    <label for="text">Description</label>
+                    <input type="text" class="form-control" [(ngModel)]="nouvprod.description" name="Description"
+                        id="Description">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Prix</label>
+                    <input type="number" class="form-control" [(ngModel)]="nouvprod.currentprice" name="nom" id="prix">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Quantité</label>
+                    <input type="number" class="form-control" [(ngModel)]="nouvprod.quantite" name="quantite" id="quantite">
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" [(ngModel)]="nouvprod.promotion" name="promotion" id="promotion">
+                        Promotion</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" [(ngModel)]="nouvprod.selected" name="selection" id="selection">
+                        Selection</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" [(ngModel)]="nouvprod.disponible" name="disponible" id="disponible">
+                        Disponibilité</label>
+                </div>
+                <div class="form-group">
+                    <label>Telechrger la photo</label>
+                    <input type="file" accept="image/*" (change)="onSelectFile($event)">
+                    <img [src]="imageURL" height="200" *ngIf="imageURL">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+      </div>
+
+
+    </div>

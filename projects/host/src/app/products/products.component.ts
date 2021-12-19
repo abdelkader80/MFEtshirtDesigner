@@ -23,6 +23,12 @@ export class ProductsComponent implements OnInit {
     })
 
   }
-
+  deleteproduit(id: number){
+    
+    this.produitservService.supprimerprod(id).subscribe(data=>{
+      alert('Element'+ id +'supprimé');
+      this.getproduct();
+    })
+  }
 
 }

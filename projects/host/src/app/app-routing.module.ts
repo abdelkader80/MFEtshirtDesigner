@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CreateproduitComponent } from './createproduit/createproduit.component';
 import { HomeComponent } from './home/home.component';
 import { ProdPersonaliseComponent } from './prod-personalise/prod-personalise.component';
 import { ProductsComponent } from './products/products.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
     path: 'researchmc',
     component:ResearchmcComponent
   },
+  {path:'ajoutproduit', component:CreateproduitComponent},
   {
     path: 'mfe1',
     loadChildren: () =>
