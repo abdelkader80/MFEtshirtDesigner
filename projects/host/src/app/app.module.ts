@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProdPersonaliseComponent } from './prod-personalise/prod-personalise.component';
 import { FormsModule } from '@angular/forms';
 import { ResearchmcComponent } from './researchmc/researchmc.component';
 import { FooterComponent } from './footer/footer.component';
 import { CreateproduitComponent } from './createproduit/createproduit.component';
+import { LoginComponent } from './login/login.component';
+//import { JwtInterceptor } from './Services/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { CreateproduitComponent } from './createproduit/createproduit.component'
     ProdPersonaliseComponent,
     ResearchmcComponent,
     FooterComponent,
-    CreateproduitComponent
+    CreateproduitComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,9 @@ import { CreateproduitComponent } from './createproduit/createproduit.component'
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+  //  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

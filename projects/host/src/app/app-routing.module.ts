@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateproduitComponent } from './createproduit/createproduit.component';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 import { ProdPersonaliseComponent } from './prod-personalise/prod-personalise.component';
 import { ProductsComponent } from './products/products.component';
 import { ResearchmcComponent } from './researchmc/researchmc.component';
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'product',
     component:ProductsComponent
+  },
+  {
+    path: 'login',
+    component:LoginComponent
   },
   {
     path: 'researchmc',

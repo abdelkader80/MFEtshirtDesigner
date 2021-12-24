@@ -16,6 +16,7 @@ export class AppComponent implements OnInit{
   constructor(private produitservice: ProduitservService, private router: Router) { }
 
   ngOnInit(): void {
+    this.produitservice.loadtoken();
     
     
   }
@@ -38,6 +39,20 @@ export class AppComponent implements OnInit{
     let url=btoa(p._links.produit.href);
     this.router.navigateByUrl("detailproduit/"+url);
 
+  }
+  isAdmin(){
+    return this.produitservice.isAdmin()
+  }
+  isUser(){
+    return this.produitservice.isUser()
+  }
+  isAuthenticated(){
+    //console.log(this.produitservice.isAuthenticated());
+    return this.produitservice.isAuthenticated();
+  }
+  Logout(){
+    this.produitservice.logout();
+    this.router.navigateByUrl("/login");
   }
  
 }

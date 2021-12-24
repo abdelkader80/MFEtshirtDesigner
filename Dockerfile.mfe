@@ -19,7 +19,8 @@ COPY . /app
 
 #♣CMD ng serve --host 0.0.0.0
 
-RUN npm run build --prod --project=host
+
+RUN npm run ng build mfe1 --prod
 
 # Stage 2
 
