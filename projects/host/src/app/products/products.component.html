@@ -1,11 +1,15 @@
 <div class="container">
-    <button (click)="getproduct()" class="btn btn-success">Liste des produit</button>
-    <button class="btn btn-success" routerLink="/ajoutproduit">Ajout</button>
-    <br>
-    <div class="panel panel-primary"  *ngIf="produits">
-        <div class="panel-heading"><b>Liste des produits</b> </div>
-        <div class="panel-body">
-    <table class="table table-dark table-striped">
+    <div class="btn-toolbar">
+    <button (click)="getproduct()" class="btn btn-success btn-sm"><i class='fa fa-list fa-2x'> </i></button>
+    
+    <button class="btn btn-success btn-sm" routerLink="/ajoutproduit"><i class="fa fa-plus-square fa-2x"  aria-hidden="true"></i></button>
+    </div>
+    
+    <div class="card text-white mb-3" *ngIf="produits">
+    <div class="card-header bg-success ">Liste des produits</div>
+       
+        <div class="card-body">
+        <table class="table table-striped">
         <thead>
             <tr>
                 <th>Nom</th>
@@ -27,8 +31,9 @@
                 <td>{{prod.description}}</td>
                 <td>{{prod.currentprice}}</td>
                 <td>{{prod.promotionng}}</td>
-                <td><button class="btn btn-success" (click)="modifierproduit(prod.id)">Modifier</button></td>
-                <td><button class="btn btn-danger" (click)="deleteproduit(prod.id)">Supprimer</button></td>
+                <td><button class="btn btn-success" (click)="modifierproduit(prod.id)"><i class='fa fa-edit'></i></button></td>
+                <td><button class="btn btn-danger" (click)="deleteproduit(prod.id)"><i class="fa fa-trash"></i>
+                    </button></td>
             </tr>
         </tbody>
     </table>

@@ -35,7 +35,9 @@
     border-image: url(https://drive.google.com/uc?export=view&id=0B3ubyt3iIvkabEZhbkJseW5IZWc) 19 22 21 19 round;
   }
   
-  
+  p { 
+    texte-indent: 3em; 
+    }
   
   .controls button{
     margin: 6px;

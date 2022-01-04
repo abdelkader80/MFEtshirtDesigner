@@ -1,4 +1,4 @@
-import { categorie } from "./categorie";
+import { Categorie } from "./categorie";
 
 export class Produit{
     id:number;
@@ -12,7 +12,7 @@ export class Produit{
     disponible:boolean;
     quantite:number;
     photoNom:string;
-    categorie:categorie
+    categorie:Categorie
     _links: {
         self: {
           href: string

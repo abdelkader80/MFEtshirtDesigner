@@ -1,0 +1,40 @@
+<div class="container">
+    
+    <button class="btn btn-success btn-sm" routerLink=""><i class="fa fa-plus-square fa-2x"  aria-hidden="true"></i></button>
+    <br><p></p>
+    <div class="card text-white mb-3" *ngIf="users">
+        <div class="card-header bg-success"><b>Gestion des utilisateurs</b> </div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Login</th>
+                        <th>Password</th>
+                        <th>Roles</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>{{user.login}}</td>
+                        <td>{{user.password}}</td>
+                        <td>
+                            <p *ngFor="let role of user.roles">{{role.name}} </p>
+                        </td>
+                        <td><button class="btn btn-success" (click)="modifierproduit(user.id)"><i
+                                    class='fa fa-edit'></i></button></td>
+                        <td><button class="btn btn-danger" (click)="deleteproduit(user.id)"> <i
+                                    class="fa fa-trash"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+
+
+</div>

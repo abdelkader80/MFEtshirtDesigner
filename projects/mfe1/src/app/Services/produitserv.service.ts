@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { categorie } from 'projects/host/src/app/model/categorie';
+import { Categorie } from 'projects/host/src/app/model/categorie';
 import { Produit } from 'projects/host/src/app/model/Produit';
 import { Observable } from 'rxjs';
 
@@ -30,8 +30,8 @@ export class ProduitservService {
 
   }
   
-  listcat():Observable<categorie[]>{
-    return this.http.get<categorie[]>(this.host+"/app/listcat")
+  listcat():Observable<Categorie[]>{
+    return this.http.get<Categorie[]>(this.host+"/app/listcat")
   }
   supprimerprod(id: number): Observable<Object>{
 

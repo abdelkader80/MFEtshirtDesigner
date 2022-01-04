@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateproduitComponent } from './createproduit/createproduit.component';
+import { GestioncatComponent } from './gestioncat/gestioncat.component';
+import { GestionusersComponent } from './gestionusers/gestionusers.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProdPersonaliseComponent } from './prod-personalise/prod-personalise.component';
@@ -21,6 +23,14 @@ const routes: Routes = [
   {
     path: 'product',
     component:ProductsComponent
+  },
+  {
+    path: 'gestuser',
+    component:GestionusersComponent
+  },
+  {
+    path: 'gestcat',
+    component:GestioncatComponent
   },
   {
     path: 'login',

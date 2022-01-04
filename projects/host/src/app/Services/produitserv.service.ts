@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
-import { categorie } from '../model/categorie';
+import { Categorie } from '../model/categorie';
 import { Produit } from '../model/Produit';
 
 
@@ -19,30 +19,44 @@ export class ProduitservService {
   constructor(private http:HttpClient) { }
   listeproduit():Observable<Produit>{
     console.log("abdo");
-    let headers=new HttpHeaders({'authorization': 'Bearer '+this.jwt});
+    let headers=new HttpHeaders({'authorization':'Bearer '+this.jwt});
     return this.http.get<Produit>(this.host+"/app/listproduit",{headers:headers});
+
+  }
+  listusers():Observable<Produit>{
+    console.log("service users");
+    let headers=new HttpHeaders({'authorization': 'Bearer '+this.jwt});
+    return this.http.get<Produit>(this.host+"/listusers",{headers:headers});
+    
 
   }
   public RechercherParMC(MC: String): Observable<Produit> {
   
     return this.http.get<Produit>(this.host+"/produits/search/rechercheparmotcle?mc="+MC);
   }
-  listcat():Observable<categorie[]>{
-    return this.http.get<categorie[]>(this.host+"/app/listcat")
+  listcat():Observable<Categorie[]>{
+    return this.http.get<Categorie[]>(this.host+"/app/listcat")
   }
   ajouternouvprod(nouveauprod:Produit): Observable<Object>{
     console.log(nouveauprod);
-    return this.http.post<Produit>(`${this.host}/app/addproduit`,nouveauprod);
+    let headers=new HttpHeaders({'authorization': 'Bearer '+this.jwt});
+    return this.http.post<Produit>(`${this.host}/app/addproduit`,nouveauprod,{headers:headers});
+  }
+  ajoutercat(nouvcat:Categorie): Observable<Object>{
+    console.log(nouvcat);
+    return this.http.post<Categorie>(`${this.host}/app/addcat`,nouvcat);
   }
   public UploadImage(file ,id){
     const formData = new FormData();
     formData.append('file', file, file.name);
-    return this.http.post<Produit>(this.host+'/app/uploadphoto/'+id, formData);
+    let headers=new HttpHeaders({'authorization': 'Bearer '+this.jwt});
+    return this.http.post<Produit>(this.host+'/app/uploadphoto/'+id, formData, {headers:headers});
     
   }
   supprimerprod(id: number): Observable<Object>{
+    let headers=new HttpHeaders({'authorization': 'Bearer '+this.jwt});
 
-    return this.http.delete(this.host+"/app/listproduit/"+id)
+    return this.http.delete(this.host+"/app/listproduit/"+id,{headers:headers})
   }
   // -------------------------Authentification
   login(data){

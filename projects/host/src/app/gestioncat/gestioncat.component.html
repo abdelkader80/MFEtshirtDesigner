@@ -1,0 +1,48 @@
+<div class="container">
+<div *ngIf="!mode">
+    <div class="card"  *ngIf="categories">
+        <div class="card-header bg-success text-white"><b>Gestion des Categories</b> </div>
+        <td><button class="btn btn-success" style="margin-left: 15px; margin-top: 15px;" (click)="changemode()"> <i class="fa fa-plus-square fa-2x"  aria-hidden="true"></i></button>
+        <div class="card-body">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom du categories</th>
+                <th>Description</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+    
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cat of categories">
+                <td>{{cat.id}}</td>
+                <td>{{cat.name}}</td>
+                <td>{{cat.description}}</td>
+              
+                <td><button class="btn btn-success" (click)="modifierproduit(user.id)"><i class='fa fa-edit'></i></button></td>
+                <td><button class="btn btn-danger" (click)="deleteproduit(user.id)"> <i class="fa fa-trash"></i></button></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+        </div>
+    </div>
+    
+    
+
+</div>
+</div>
+<div class="container mt-3" *ngIf="mode">
+    <h2>Form Control Size</h2>
+    <p>You can change the size of .form-control inputs with .form-control-lg or .form-control-sm:</p>
+    <form (ngSubmit)='onSubmit(f)' #f="ngForm">
+      <input type="text" class="form-control form-control-lg" placeholder="Large input"  [(ngModel)]="nouvcat.name" name="name" id="name">
+      <input type="text" class="form-control form-control-lg" placeholder="Large input"  [(ngModel)]="nouvcat.description" name="description" id="description">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  
+

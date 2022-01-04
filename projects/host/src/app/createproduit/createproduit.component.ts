@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
-import { categorie } from '../model/categorie';
+import { Categorie } from '../model/categorie';
 import { Produit } from '../model/Produit';
 import { ProduitservService } from '../Services/produitserv.service';
 
@@ -19,7 +19,7 @@ export class CreateproduitComponent implements OnInit {
   imageURL: any;
   message;
   imagePath;
-  cat: categorie[];
+  cat: Categorie[];
 
 
   constructor(private prodserv: ProduitservService,

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import * as $ from 'jquery'
+import html2canvas from 'html2canvas'
+
+
 declare var fabric: any;
 
 @Component({
@@ -7,17 +11,27 @@ declare var fabric: any;
   styleUrls: ['./prod-personalise.component.css']
 })
 export class ProdPersonaliseComponent implements OnInit {
+  bgc = 'white';
+  selectedValue = 'background_tshirt.png';
+  prix = 12;
 
   constructor() { }
-  public bgc = 'white';
-  public selectedValue = 'background_tshirt.png';
-  prix = 12;
+  screenshot() {
+    html2canvas(document.getElementById('canvas-wrapper')).then(canvas => {
+      document.body.appendChild(canvas)
+    });
+  }
+
+
+
   tabimage: string[] = ['background_tshirt.png', 'longtshirt.png', 'capuche.png'];
 
   ngOnInit(): void {
+
     var canvas = new fabric.Canvas('c');
+    canvas.setBackgroundImage('this.selectedValue', canvas.renderAll.bind(canvas));
     var btn = document.getElementById('btnshape');
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function () {
       var rect = new fabric.Rect({
         left: 200,
         top: 10,
@@ -26,18 +40,46 @@ export class ProdPersonaliseComponent implements OnInit {
         height: 50,
       });
       canvas.add(rect);
+      var b = document.getElementById('b');
+      b.addEventListener('click', function () {
+        alert("La hauteur de rectangle est " + rect.getScaledHeight());
+        alert("La largeur de rectangle est de " + rect.getScaledWidth());
+        var haut = rect.getScaledHeight();
+        var larg = rect.getScaledHeight();
+        document.getElementById('hauteur').innerHTML = haut;
+        document.getElementById('largeur').innerHTML = larg;
+
+      });
     });
+
+    const download = document.getElementById('save');
+    //const capt = document.getElementById('canvas-wrapper');
+    const capt = document.getElementById('canvas-wrapper') as HTMLCanvasElement
+    download.addEventListener('click', function (e) {
+      //console.log(capt.toDataURL());
+      var link = document.createElement('a');
+      link.download = 'download.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    });
+
     var btn = document.getElementById('btn');
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function () {
       var text = new fabric.IText('Your Text Here', {
-        left: 40, top: 100, fill: '#000000',
-        fontSize: 20
+        left: 40,
+        top: 100,
+        fill: '#000000',
+        fontSize: 20,
+        fontFamily: 'Impact',
+        // stroke: '#c3bfbf',
+        strokeWidth: 3
       });
       canvas.add(text);
+
     });
 
     function addHandler(id, fn, eventName) {
-      document.getElementById(id)[eventName || 'onclick'] = function() {
+      document.getElementById(id)[eventName || 'onclick'] = function () {
         var el = this;
         let obj;
         if (obj = canvas.getActiveObject()) {
@@ -57,30 +99,25 @@ export class ProdPersonaliseComponent implements OnInit {
       }
     }
 
-    function getStyle(object, styleName) {
-      return (object.getSelectionStyles && object.isEditing)
-        ? object.getSelectionStyles()[styleName]
-        : object[styleName];
-    }
 
-    addHandler('size', function(obj) {
+    addHandler('size', function (obj) {
       setStyle(obj, 'fontSize', parseInt(this.value, 10));
     }, 'onchange');
 
-    addHandler('height', function(obj) {
+    addHandler('height', function (obj) {
       setStyle(obj, 'lineHeight', parseInt(this.value, 10));
     }, 'onchange');
 
-    addHandler('color', function(obj) {
+    addHandler('color', function (obj) {
       setStyle(obj, 'fill', this.value);
     }, 'onchange');
 
-    addHandler('bg-color', function(obj) {
+    addHandler('bg-color', function (obj) {
       setStyle(obj, 'textBackgroundColor', this.value);
     }, 'onchange');
 
     var btn = document.getElementById('deleteObjects');
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function () {
       var activeObject = canvas.getActiveObject();
 
       if (activeObject) {
@@ -89,13 +126,13 @@ export class ProdPersonaliseComponent implements OnInit {
         }
       }
     });
-//upload image
+    //upload image
     document.getElementById('uploadImg').onchange = function handleImage(e) {
       var reader = new FileReader();
-      reader.onload = function(event) {
+      reader.onload = function (event) {
         var imgObj = new Image();
-        imgObj.src = <string> event.target.result;
-        imgObj.onload = function() {
+        imgObj.src = <string>event.target.result;
+        imgObj.onload = function () {
           var image = new fabric.Image(imgObj);
           image.set({
             angle: 0,
@@ -105,26 +142,44 @@ export class ProdPersonaliseComponent implements OnInit {
           canvas.centerObject(image);
           canvas.add(image);
           canvas.renderAll();
+
         };
       };
-      reader.readAsDataURL((<HTMLInputElement> e.target).files[0]);
+      reader.readAsDataURL((<HTMLInputElement>e.target).files[0]);
+
     };
-    function onObjectSelected(e) {
-      if ((e.target.get('type')) === 'i-text') {
-        document.getElementById('textMenu').className = 'displayOperations';
-      } else {
-      }
+    //upload image 1
+    document.getElementById('uploadImg2').onchange = function handleImage(e) {
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        var imgObj = new Image();
+        imgObj.src = <string>event.target.result;
+        imgObj.onload = function () {
+          var image = new fabric.Image(imgObj);
+          image.set({
+            angle: 0,
+            padding: 10,
+            cornersize: 10,
+            selectable:false
+          });
+          canvas.centerObject(image);
+          canvas.add(image);
+          canvas.renderAll();
+          
 
-    }
-   
+        };
+      };
+      reader.readAsDataURL((<HTMLInputElement>e.target).files[0]);
+
+    };
+    
+
+    
 
 
   }
-  nouveauprix() {
-    this.prix = this.prix + 5;
-  }
-  diminuerprix() {
-    this.prix = this.prix - 5;
-  }
+
+
 }
+
 

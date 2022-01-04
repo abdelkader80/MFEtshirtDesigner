@@ -12,6 +12,9 @@ import { ResearchmcComponent } from './researchmc/researchmc.component';
 import { FooterComponent } from './footer/footer.component';
 import { CreateproduitComponent } from './createproduit/createproduit.component';
 import { LoginComponent } from './login/login.component';
+import { GestionusersComponent } from './gestionusers/gestionusers.component';
+import { GestioncatComponent } from './gestioncat/gestioncat.component';
+import { GestcatComponent } from './gestcat/gestcat.component';
 //import { JwtInterceptor } from './Services/interceptor.service';
 
 @NgModule({
@@ -23,7 +26,10 @@ import { LoginComponent } from './login/login.component';
     ResearchmcComponent,
     FooterComponent,
     CreateproduitComponent,
-    LoginComponent
+    LoginComponent,
+    GestionusersComponent,
+    GestioncatComponent,
+    GestcatComponent
   ],
   imports: [
     BrowserModule,
