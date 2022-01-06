@@ -20,7 +20,8 @@ COPY . /app
 #♣CMD ng serve --host 0.0.0.0
 
 
-RUN npm ng build host --prod
+
+RUN npm run ng build host --prod
 
 # Stage 2
 

@@ -20,7 +20,7 @@ COPY . /app
 #♣CMD ng serve --host 0.0.0.0
 
 
-RUN npm ng build mfe1 --prod
+RUN npm run ng build mfe1 --prod
 
 
 
