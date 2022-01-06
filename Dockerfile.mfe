@@ -11,6 +11,7 @@ WORKDIR /app
 
 COPY package.json /app
 
+
 RUN npm install
 
 RUN npm install -D typescript@4.0.2
