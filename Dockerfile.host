@@ -4,7 +4,7 @@
 FROM node:14-alpine as build-step
 
 
-RUN npm install -g @angular/cli@10
+#RUN npm install -g @angular/cli@10
 
 
 WORKDIR /app
