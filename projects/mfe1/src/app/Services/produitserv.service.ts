@@ -16,6 +16,9 @@ export class ProduitservService {
     return this.http.get(this.host+'/categories');
 
   }
+  detailsprod(id){
+    return this.http.get(this.host+'/produits/'+id);
+  }
   getproducts(c){
     return this.http.get(c._links.products.href);
 

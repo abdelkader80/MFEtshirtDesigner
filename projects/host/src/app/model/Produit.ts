@@ -5,7 +5,7 @@ export class Produit{
     name:string;
     taille:string;
     couleur:string;
-    description:string;
+    Description:string;
     currentprice:number;
     promotion:boolean;
     selected:boolean;

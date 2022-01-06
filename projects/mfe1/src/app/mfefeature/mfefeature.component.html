@@ -1,56 +1,131 @@
 <br>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4">
-            <ul *ngIf="cat" class="list-group">
-                <li [ngClass]="c==currentcat?'active':''" *ngFor="let c of cat._embedded.categories"
-                    class="list-group-item category" (click)="onGetproducts(c)">
-                    {{c.name}}
-                </li>
-            </ul>
-        </div>
+    <div *ngIf="mode">
+        <div class="row">
+            <div class="col-md-4">
+                <ul *ngIf="cat" class="list-group">
+                    <li [ngClass]="c==currentcat?'active':''" *ngFor="let c of cat._embedded.categories"
+                        class="list-group-item category" (click)="onGetproducts(c)">
+                        {{c.name}}
+                    </li>
+                </ul>
+            </div>
 
-        <div class="col-md-8" *ngIf="produits">
-            <div class="card text-white bg-dark mb-3">
-                <div class="card-header">Liste des produits</div>
-                <div class="card-body">
-                    <div class="row">
-                    <div class="col-md-6" *ngFor="let p of produits._embedded.produits">
+            <div class="col-md-8" *ngIf="produits">
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-header">Liste des produits</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6" *ngFor="let p of produits._embedded.produits">
 
-                        <div class="card-deck">
+                                <div class="card-deck">
 
-                            <div class="card text-white bg-info mb-4">
-                                <div class="card-header">{{p.name}}</div>
-                                <div class="card-body">
-                                    <img class="card-img-top" (click)="detailProduit(p)" [src]="getphotonom(p.id)"
-                                        alt="">
-                                </div>
-                                <div>
-                                    <label>
-                                        Prix :{{p.currentprice|number:'0.00'}}
-                                    </label>
-                                </div>
-                                <div>
-                                    <span *ngIf="p.promotion">
-                                        <img src="http://localhost:5000/assets/images/promo.png" class="img-thumbnail img-circle"
-                                            style="height: 40px">
+                                    <div class="card text-white bg-info mb-4">
+                                        <div class="card-header">{{p.name}}</div>
+                                        <div class="card-body">
+                                            <img class="card-img-top" (click)="detailProduit(p.id)"
+                                                [src]="getphotonom(p.id)" alt="">
+                                        </div>
+                                        <div>
+                                            <label>
+                                                Prix :{{p.currentprice|number:'0.00'}}
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <span *ngIf="p.promotion">
+                                                <img src="http://localhost:5000/assets/images/promo.png"
+                                                    class="img-thumbnail img-circle" style="height: 40px">
 
-                                    </span>
-                                   
-                                    <span *ngIf="p.disponible">
-                                        <img src="http://localhost:5000/assets/images/disponible.png" class="img-thumbnail img-circle"
-                                            style="height: 40px">
+                                            </span>
 
-                                    </span>
+                                            <span *ngIf="p.disponible">
+                                                <img src="http://localhost:5000/assets/images/disponible.png"
+                                                    class="img-thumbnail img-circle" style="height: 40px">
+
+                                            </span>
+
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
         </div>
     </div>
+    <div *ngIf="!mode">
+
+
+
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-header">Fiche Produit : {{currentProduct.name}}
+
+                <button class="btn btn-success" (click)="onEditProduct()"><i class='fa fa-edit'></i></button>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-thumbnail" [src]="getphotonom(currentProduct.id)" />
+                        <div>
+                            <button *ngIf="!editPhoto" (click)="onEditPhoto(currentProduct)">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <span *ngIf="editPhoto">
+                                <input type="file" (change)="onSelectedFile($event)">
+                                <button class="btn btn-success btn-sm" (click)="UploadImage()">
+                                    <span class="glyphicon glyphicon-upload"></span>
+                                </button>
+                                {{progress}}
+                            </span>
+                        </div>
+
+                        <div>
+                            <span *ngIf="currentProduct.promotion">
+                                <img src="http://localhost:5000/assets/images/promo.png"
+                                    class="img-thumbnail img-circle" style="height: 40px">
+
+                            </span>
+                            <span *ngIf="currentProduct.selected">
+                                <img src="http://localhost:5000/assets/images/favorite.png"
+                                    class="img-thumbnail img-circle" style="height: 40px">
+
+                            </span>
+                            <span *ngIf="currentProduct.disponible">
+                                <img src="http://localhost:5000/assets/images/disponible.png"
+                                    class="img-thumbnail img-circle" style="height: 40px">
+
+                            </span>
+                        </div>
+                        <!-- <div>
+                        <form #f="ngForm" (ngSubmit)="ajouterProduitdansPanier(currentProduct)">
+                            <label class="control-label">Quantité :</label>
+                            <input type="number" name="quantity" [(ngModel)]="currentProduct.quantite" ngModel
+                                style="width: 40px">
+                            <button>
+                                <img src="assets/images/panier.png" style="height: 20px">
+                            </button>
+                        </form>
+                    </div> -->
+
+                    </div>
+                    <div class="col-md-7">
+                        <div class="panel panel-default" style="min-height: 300px">
+                            <div class="panel-body">
+                                <label>Price : {{currentProduct.currentprice|number:'0.00'}}</label>
+                                <br>
+
+                                <label> Description : {{currentProduct.Description}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
 </div>

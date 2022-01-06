@@ -15,38 +15,46 @@ export class MfefeatureComponent implements OnInit {
   public cat;
   public produits;
   public currentcat;
+  currentProduct;
+  mode = true;
   constructor(private produitservice: ProduitservService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.produitservice.listcategories()
-    .subscribe(data=>{
-      this.cat=data;
+      .subscribe(data => {
+        this.cat = data;
 
 
-    },err=>{
-      console.log(err);
-    })
+      }, err => {
+        console.log(err);
+      })
   }
-  onGetproducts(c){
-    this.currentcat=c;
+  onGetproducts(c) {
+    this.currentcat = c;
     this.produitservice.getproducts(c)
-    .subscribe(data=>{
-      console.log(data);
-      this.produits=data;
-    },err=>{
-      console.log(err);
-    })
+      .subscribe(data => {
+        console.log(data);
+        this.produits = data;
+      }, err => {
+        console.log(err);
+      })
   }
-  getphotonom(id){
-    return this.produitservice.host+'/app/photoProduct/'+id;
+  getphotonom(id) {
+    return this.produitservice.host + '/app/photoProduct/' + id;
 
   }
-  detailProduit(p:Produit){
-    let url=btoa(p._links.produit.href);
-    this.router.navigateByUrl("detailproduit/"+url);
-
+  detailProduit(id) {
+    this.mode = false;
+    return this.produitservice.detailsprod(id)
+      .subscribe(data => {
+        this.currentProduct = data;
+      }, err => {
+        console.log(err);
+      })
   }
 
 }
+
+

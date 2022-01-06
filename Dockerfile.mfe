@@ -22,9 +22,12 @@ COPY . /app
 
 RUN npm run ng build mfe1 --prod
 
+
+
 # Stage 2
 
 FROM nginx:1.17.1-alpine
 
 COPY --from=build-step /app/dist/pds2 /usr/share/nginx/html
 CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 5000
