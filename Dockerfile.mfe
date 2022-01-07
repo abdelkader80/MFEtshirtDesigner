@@ -15,7 +15,7 @@ COPY package.json /app
 
 RUN yarn install 
 
-RUN npm install -D typescript@4.0.2
+#RUN npm install -D typescript@4.0.2
 
 COPY . /app
 
