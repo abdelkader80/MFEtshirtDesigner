@@ -1,21 +1,35 @@
-FROM node:14-alpine as builder
 
-COPY package.json  ./
+# Stage 1
+
+FROM node:14-alpine as build-step
+
+
+RUN npm install -g @angular/cli@10
+
+
+WORKDIR /app
+
+
+COPY package.json /app
+
 
 RUN yarn install 
 
-RUN mkdir /mfe-app
+RUN npm install -D typescript@4.0.2
 
-RUN mv ./node_modules ./mfe-app
+COPY . /app
 
-WORKDIR /mfe-app
+#♣CMD ng serve --host 0.0.0.0
 
-COPY . .
 
-RUN npm run ng build --prod --project=mfe1
+RUN npm run ng build mfe1 --prod
 
-FROM nginx
-COPY nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /mfe-app/dist/mfe1 /usr/share/nginx/html
 
+
+# Stage 2
+
+FROM nginx:1.17.1-alpine
+
+COPY --from=build-step /app/dist/pds2 /usr1/share/nginx/html
 CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 5000
