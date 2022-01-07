@@ -23,7 +23,7 @@ COPY . /app
 
 
 
-RUN npm run ng build host --prod
+RUN npm run build host --prod
 
 # Stage 2
 
