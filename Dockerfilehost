@@ -19,6 +19,8 @@ RUN npm install -D typescript@4.0.2
 
 COPY . /app
 
+EXPOSE 4200
+
 CMD ng serve host --host 0.0.0.0
 
 

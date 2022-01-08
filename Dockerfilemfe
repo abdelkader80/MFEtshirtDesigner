@@ -19,6 +19,8 @@ RUN npm install -D typescript@4.0.2
 
 COPY . /app
 
+EXPOSE 5000
+
 CMD ng serve mfe1 --host 0.0.0.0
 
 
