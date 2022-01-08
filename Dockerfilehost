@@ -19,17 +19,17 @@ RUN npm install -D typescript@4.0.2
 
 COPY . /app
 
-#♣CMD ng serve --host 0.0.0.0
+CMD ng serve host --host 0.0.0.0
 
 
-RUN npm run ng build mfe1 --prod
+#RUN npm run ng build mfe1 --prod
 
 
 
 # Stage 2
 
-FROM nginx:1.17.1-alpine
+#FROM nginx:1.17.1-alpine
 
-COPY --from=build-step /app/dist/pds2 /usr1/share/nginx/html
-CMD ["nginx", "-g", "daemon off;"]
-EXPOSE 5000
+#COPY --from=build-step /app/dist/pds2 /usr1/share/nginx/html
+#CMD ["nginx", "-g", "daemon off;"]
+#EXPOSE 5000
