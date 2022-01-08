@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProduitservService {
-   host="http://127.0.0.1:8081"
+   host="http://5.135.150.216:8081"
 
   constructor(private http:HttpClient) { }
   listcategories(){
@@ -46,7 +46,7 @@ export class ProduitservService {
   }
   public Updateprod2(id: number, produit: Produit): Observable<Produit> {
     
-    return this.http.put<Produit>("http://127.0.0.1:8090/employees/"+id, produit);
+    return this.http.put<Produit>("http://5.135.150.216:8090/employees/"+id, produit);
   }
   
   public UploadImage(file ,id){
