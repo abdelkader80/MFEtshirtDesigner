@@ -39,8 +39,9 @@ export class ProduitservService {
   }
   ajouternouvprod(nouveauprod:Produit): Observable<Object>{
     console.log(nouveauprod);
-    let headers=new HttpHeaders({'authorization': 'Bearer '+this.jwt});
-    return this.http.post<Produit>(`${this.host}/app/addproduit`,nouveauprod,{headers:headers});
+    // let headers=new HttpHeaders({'authorization': 'Bearer '+this.jwt});
+    // return this.http.post<Produit>(`${this.host}/app/addproduit`,nouveauprod,{headers:headers});
+    return this.http.post<Produit>(`${this.host}/app/addproduit`,nouveauprod);
   }
   ajoutercat(nouvcat:Categorie): Observable<Object>{
     console.log(nouvcat);
@@ -49,8 +50,9 @@ export class ProduitservService {
   public UploadImage(file ,id){
     const formData = new FormData();
     formData.append('file', file, file.name);
-    let headers=new HttpHeaders({'authorization': 'Bearer '+this.jwt});
-    return this.http.post<Produit>(this.host+'/app/uploadphoto/'+id, formData, {headers:headers});
+   /*  let headers=new HttpHeaders({'authorization': 'Bearer '+this.jwt});
+    return this.http.post<Produit>(this.host+'/app/uploadphoto/'+id, formData, {headers:headers}); */
+    return this.http.post<Produit>(this.host+'/app/uploadphoto/'+id, formData);
     
   }
   supprimerprod(id: number): Observable<Object>{
